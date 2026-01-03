@@ -11,3 +11,9 @@ It is used to:
 The original MVP remains untouched and serves as a reference baseline.
 
 Domain contracts are documented in /lib/commerce/contracts.
+
+## Contract Testing
+
+This project uses contract tests to validate and protect domain contracts.
+
+See: [`docs/contracts/contract-testing.md`](docs/contracts/contract-testing.md)
