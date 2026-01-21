@@ -2,7 +2,11 @@ import { getProducts } from "@/lib/commerce";
 import { ProductList } from "@/components/products/ProductList";
 
 export default async function HomePage() {
-    const products = await getProducts();
+    const results = await getProducts();
+
+    const products = results
+    .filter(r => r.success)
+    .map(r => r.data);
 
     return (
         <main>
