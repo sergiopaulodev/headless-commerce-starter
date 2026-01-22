@@ -1,14 +1,16 @@
 import { ProductCard } from "./ProductCard";
 
 export function ProductList({products}) {
-    if (!products || products.lenght === 0) {
-        return <p>No products availeble</p>;
+    if (!products || products.length === 0) {
+        return <p>No products available</p>;
     }
 
     return(
         <ul>
             {products.map((product) => (
-                <ProductCard key={product.handle} product={product} />
+                <li key={product.handle} >
+                    <ProductCard product={product} />
+                </li>
             ))}
         </ul>
     );
