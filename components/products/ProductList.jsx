@@ -8,7 +8,7 @@ export function ProductList({products}) {
     return(
         <ul>
             {products.map((product) => (
-                <li key={product.handle} >
+                <li key={product.id} >
                     <ProductCard product={product} />
                 </li>
             ))}
