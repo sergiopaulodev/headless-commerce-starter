@@ -1,23 +1,17 @@
 import { getCollections } from "@/lib/commerce/collections";
+import { CollectionList } from "@/components/collections/CollectionList";
 
 export default async function CollectionPage() {
-    const collections = await getCollections();
+    const results = await getCollections();
 
+    const collections = results
+        .filter(r => r.success)
+        .map(r => r.data);
+    
     return (
         <main>
             <h1>Collections</h1>
-
-            <ul>
-                {collections.map((collection) => (
-                    <li key={collection.id}>
-                        <a href={`/collections/${collection.handle}`}>
-                            {collection.title}
-                        </a>
-                    </li>
-                    )
-                )
-                }
-            </ul>
+            <CollectionList collections={collections} />
         </main>
     );
 }
