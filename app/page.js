@@ -1,12 +1,18 @@
 import { loadProducts } from "@/lib/integration/products.integration";
 import { ProductList } from "@/components/products/ProductList";
+import { ErrorState } from "@/components/ui/ErrorState";
 
 export default async function HomePage() {
     const results = await loadProducts();
 
-    const products = results
-    .filter(r => r.success)
-    .map(r => r.data);
+    const successful = results.filter(r => r.success);
+
+    if (successful.length === 0) {
+        const firstError = results.find(r => !r.success);
+        return <ErrorState code={firstError?.error.code} />;
+    }
+
+    const products = successful.map(r => r.data);
 
     return (
         <main>
