@@ -1,8 +1,8 @@
-import { getCollections } from "@/lib/commerce/collections";
+import { loadCollections } from "@/lib/integration/collections.integration";
 import { CollectionList } from "@/components/collections/CollectionList";
 
 export default async function CollectionPage() {
-    const results = await getCollections();
+    const results = await loadCollections();
 
     const collections = results
         .filter(r => r.success)

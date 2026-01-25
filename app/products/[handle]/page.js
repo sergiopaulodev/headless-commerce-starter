@@ -1,15 +1,13 @@
-import { getProductByHandle } from "@/lib/commerce";
+import { loadProduct } from "@/lib/integration/product.integration";
 import { ProductDetail } from "@/components/products/ProductDetail";
 
 export default async function ProductPage({ params }) {
-    const { handle } = await params;
-    const result = await getProductByHandle(handle);
+    const { handle } = params;
+    const result = await loadProduct(handle);
 
     if (!result.success) {
         return <p>Product not found</p>;
     }
 
-    const product = result.data;
-
-    return <ProductDetail product={product} />;
+    return <ProductDetail product={product.data} />;
 };
