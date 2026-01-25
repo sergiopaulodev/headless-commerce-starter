@@ -1,8 +1,8 @@
-import { getProducts } from "@/lib/commerce";
+import { loadProducts } from "@/lib/integration/products.integration";
 import { ProductList } from "@/components/products/ProductList";
 
 export default async function HomePage() {
-    const results = await getProducts();
+    const results = await loadProducts();
 
     const products = results
     .filter(r => r.success)
