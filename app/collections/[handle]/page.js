@@ -7,7 +7,10 @@ export default async function CollectionPage({ params }) {
     const result = await loadCollection(handle);
 
     if (!result.success) {
-        return <ErrorState code={result.error.code} />;       
+        return <ErrorState 
+                    code={result.error.code} 
+                    type={result.error.type}
+                />;       
     }
 
     const collection = result.data;

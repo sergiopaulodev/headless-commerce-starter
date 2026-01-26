@@ -8,7 +8,10 @@ export default async function ProductPage({ params }) {
   const result = await loadProduct(handle);
 
   if (!result.success) {
-    return <ErrorState code={result.error.code} />;
+    return <ErrorState 
+                code={result.error.code} 
+                type={result.error.type} 
+            />;
   }
 
   return <ProductDetail product={result.data} />;
