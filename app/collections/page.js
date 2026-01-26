@@ -9,7 +9,10 @@ export default async function CollectionPage() {
 
     if (success.length === 0) {
         const firstError = results.find(r => !r.success);
-        return <ErrorState code={firstError?.error.code} />;
+        return <ErrorState 
+                    code={firstError?.error.code}
+                    type={firstError?.error.type}
+                />;
     }
 
     const collections = success.map(r => r.data);
