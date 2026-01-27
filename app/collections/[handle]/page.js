@@ -1,5 +1,6 @@
 import { loadCollection } from "@/lib/integration/collections.integration";
 import { ErrorState } from "@/components/ui/ErrorState";
+import Link from "next/link";
 
 export default async function CollectionPage({ params }) {
     const { handle } = await params;
@@ -23,11 +24,13 @@ export default async function CollectionPage({ params }) {
 
             <p>Productos en esta colección:</p>
             <ul>
-                {collection.products.map((productHandle) => (
-                    <li key={productHandle}>{productHandle}</li>
-                        )
-                    )
-                }
+                {collection.products.map(product => (
+                        <li key={product.id}>
+                            <Link href={`/products/${product.handle}`}>
+                                {product.title}
+                            </Link>
+                        </li>
+                    ))}
             </ul>
         </main>
     );
