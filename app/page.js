@@ -1,22 +1,18 @@
 import { loadProducts } from "@/lib/integration/products.integration";
+import { MockProvider } from "@/lib/commerce/providers/mock.provider";
 import { ProductList } from "@/components/products/ProductList";
 import { ErrorState } from "@/components/ui/ErrorState";
 
 export default async function HomePage() {
-    const results = await loadProducts();
+    const products = await loadProducts(MockProvider);
 
-    const successful = results.filter(r => r.success);
-
-    if (successful.length === 0) {
-        const firstError = results.find(r => !r.success);
+    if (!products || products.length === 0) {
         return <ErrorState 
-                    code={firstError?.error.code} 
-                    type={firstError?.error.type} 
+                    code="EMPTY_CATALOG" 
+                    type="business" 
 
                 />;
     }
-
-    const products = successful.map(r => r.data);
 
     return (
         <main>
